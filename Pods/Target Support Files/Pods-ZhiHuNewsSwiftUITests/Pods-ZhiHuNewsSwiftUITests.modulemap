@@ -1,0 +1,6 @@
+framework module Pods_ZhiHuNewsSwiftUITests {
+  umbrella header "Pods-ZhiHuNewsSwiftUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
