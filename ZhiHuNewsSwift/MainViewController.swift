@@ -8,8 +8,16 @@
 
 import UIKit
 
+import Moya
+import RxSwift
+
 class MainViewController: UITabBarController {
 
+    var provider = RxMoyaProvider<APIManager>()
+    var dispose = DisposeBag()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,8 +43,11 @@ class MainViewController: UITabBarController {
         
         
         
+        
+        
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

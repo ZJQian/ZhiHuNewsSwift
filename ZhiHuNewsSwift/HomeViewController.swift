@@ -92,6 +92,8 @@ class HomeViewController: UIViewController {
             .tap
             .subscribe(onNext: { (sender) in
             
+                UIApplication.shared.keyWindow?.addSubview(self.menuViewController.view)
+                self.menuViewController.bindtoNav = self.navigationController?.tabBarController
                 self.menuViewController.view.frame = CGRect.init(x: -screenW*0.7, y: 0, width: screenW*0.7, height: screenH)
                 self.menuViewController.showView = !self.menuViewController.showView
                 
@@ -121,6 +123,8 @@ class HomeViewController: UIViewController {
     }
     
 }
+
+// MARK: - UITableViewDelegate,UITableViewDataSource
 extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -148,6 +152,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
     }
 }
 
+// MARK: - UIScrollViewDelegate
 extension HomeViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -156,6 +161,7 @@ extension HomeViewController: UIScrollViewDelegate {
     }
 }
 
+// MARK: - 手势代理方法
 extension HomeViewController: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {

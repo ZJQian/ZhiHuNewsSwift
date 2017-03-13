@@ -62,6 +62,10 @@ class DetailViewController: UIViewController {
         view.addSubview(previousWeb)
         setUI()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
     
     //MARK:- request
     func loadData() {
