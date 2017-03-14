@@ -11,44 +11,72 @@ import UIKit
 class EditorCell: UITableViewCell {
 
     
-    override func draw(_ rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
+    var headImgView = UIImageView()
+    var nameLabel = UILabel()
+    var nicknameLabel = UILabel()
+    var model = EditorModel() {
+    
+        didSet {
         
-        context?.setFillColor(UIColor.clear.cgColor)
-        context?.fill(rect)
+            headImgView.sd_setImage(with: URL.init(string: model.avatar!))
+            
+            nameLabel.text = model.name
+            
+            nicknameLabel.text = model.bio
         
-        //上分割线，
-        context?.setStrokeColor(UIColor.rgba(r: 225, g: 225, b: 225, a: 1).cgColor)
-        context?.stroke(CGRect.init(x: 0, y: 0, width: 0, height: 0))
-        
-        //下分割线
-        context?.setStrokeColor(UIColor.rgba(r: 225, g: 225, b: 225, a: 1).cgColor)
-        context?.stroke(CGRect.init(x: 0, y: rect.size.height, width: rect.size.width, height: 0.5))
-
+        }
+    
     }
+    
+    
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        let label = UILabel.init()
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = "主编"
-        contentView.addSubview(label)
-        label.snp.makeConstraints { (make) in
+        
+        selectionStyle = .none
+        
+        headImgView = UIImageView.init()
+        headImgView.layer.cornerRadius = 20
+        headImgView.layer.masksToBounds = true
+        contentView.addSubview(headImgView)
+        headImgView.snp.makeConstraints { (make) in
             make.left.equalTo(15)
             make.centerY.equalTo(contentView)
-            make.width.equalTo(40)
-            make.height.equalTo(25)
+            make.width.height.equalTo(40)
+        }
+        
+        nameLabel = UILabel.init()
+        nameLabel.font = UIFont.systemFont(ofSize: 15)
+        contentView.addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(headImgView.snp.right).offset(15)
+            make.top.equalTo(headImgView)
+            make.width.equalTo(200)
+            make.height.equalTo(18)
+        }
+        
+        nicknameLabel = UILabel.init()
+        nicknameLabel.font = UIFont.systemFont(ofSize: 10)
+        nicknameLabel.textColor = UIColor.lightGray
+        contentView.addSubview(nicknameLabel)
+        nicknameLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(nameLabel)
+            make.bottom.equalTo(headImgView)
+            make.width.equalTo(200)
+            make.height.equalTo(10)
         }
         
         let img = UIImageView.init()
         img.image = UIImage.init(named: "next")
         contentView.addSubview(img)
         img.snp.makeConstraints { (make) in
-            make.left.equalTo(screenW-35)
+            make.left.equalTo(screenW-26)
             make.centerY.equalTo(contentView)
-            make.width.height.equalTo(20)
+            make.width.height.equalTo(16)
         }
+        
         
     }
     

@@ -122,10 +122,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MenuViewController {
-    
-    
-    
-    
+       
     fileprivate func showThemeVC(_ model: ThemeModel) {
         if model.id == nil {
             bindtoNav?.selectedIndex = 0

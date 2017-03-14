@@ -96,7 +96,7 @@ class ThemeViewController: UIViewController {
         
         
         let btn = UIButton.init(type: .custom)
-        btn.frame = CGRect.init(x: 10, y: 25, width: 50, height: 30)
+        btn.frame = CGRect.init(x: 0, y: 25, width: 50, height: 30)
         btn.setImage(UIImage.init(named: "nav_back"), for: .normal)
         view.addSubview(btn)
         btn.rx
@@ -133,13 +133,13 @@ extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
         
         
         if indexPath.row == 0 {
-            tableView.separatorInset = UIEdgeInsets.zero
-            let editorCellID = "editorCell"
-            var cell = tableView.dequeueReusableCell(withIdentifier: editorCellID) as? EditorCell
-            if cell == nil {
-                cell = EditorCell.init(style: .default, reuseIdentifier: editorCellID)
-            }
             
+            let editorCellID = "allEditorCell"
+            var cell = tableView.dequeueReusableCell(withIdentifier: editorCellID) as? AllEditorCell
+            if cell == nil {
+                cell = AllEditorCell.init(style: .default, reuseIdentifier: editorCellID)
+            }
+            cell?.editors = themeEditors
             return cell!
             
         } else {
@@ -170,14 +170,23 @@ extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
         return indexPath.row == 0 ? 35 : 90
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var idArr = [Int]()
-        themeStories.forEach { (model) in
-            idArr.append(model.id!)
+        
+        if indexPath.row == 0 {
+            
+            let editor = EditorViewController.init()
+            editor.editors = themeEditors
+            navigationController?.pushViewController(editor, animated: true)
+            
+        } else {
+            var idArr = [Int]()
+            themeStories.forEach { (model) in
+                idArr.append(model.id!)
+            }
+            let detail = DetailViewController()
+            detail.idArr = idArr
+            detail.id = idArr[indexPath.row-1]
+            navigationController?.pushViewController(detail, animated: true)
         }
-        let detail = DetailViewController()
-        detail.idArr = idArr
-        detail.id = idArr[indexPath.row-1]
-        navigationController?.pushViewController(detail, animated: true)
     }
 }
 
