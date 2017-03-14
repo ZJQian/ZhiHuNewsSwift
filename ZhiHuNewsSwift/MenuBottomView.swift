@@ -22,7 +22,7 @@ class MenuBottomView: UIView {
             let btn = UIButton.init(type: .custom)
             btn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
             btn.setTitleColor(UIColor.lightGray, for: .normal)
-            btn.setTitle(["离线","夜间"][index], for: .normal)
+            btn.setTitle(["完成","夜间"][index], for: .normal)
             btn.setImage(UIImage.init(named: ["download","moon"][index]), for: .normal)
             btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0)
             addSubview(btn)

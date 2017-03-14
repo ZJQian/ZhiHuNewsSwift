@@ -17,8 +17,6 @@ class MenuViewModel {
     private let provider = RxMoyaProvider<APIManager>()
     var dispose = DisposeBag()
     
-    
-    
     func getThemes(completed: @escaping (_ menuModel: MenuModel) -> ()){
         
          provider
@@ -30,7 +28,6 @@ class MenuViewModel {
             }, onError: { (error) in
                 
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(dispose)
-        
         
     }
 

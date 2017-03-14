@@ -72,7 +72,6 @@ class HomeViewController: UIViewController {
         
         navView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: 60))
         view.addSubview(navView)
-        
         navView.alpha = 0
         
         let label = UILabel.init(frame: CGRect.init(x: 0, y: 20, width: screenW, height: 40))

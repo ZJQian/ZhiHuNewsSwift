@@ -8,15 +8,9 @@
 
 import UIKit
 
-import Moya
-import RxSwift
 
 class MainViewController: UITabBarController {
 
-    var provider = RxMoyaProvider<APIManager>()
-    var dispose = DisposeBag()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +29,7 @@ class MainViewController: UITabBarController {
         let theme = ThemeViewController.init()
         theme.view.backgroundColor = UIColor.white
         let nav2 = UINavigationController.init(rootViewController: theme)
+        nav2.navigationBar.isHidden = true
         
         viewControllers = [nav,nav2]
         

@@ -17,6 +17,7 @@ class MenuViewController: UIViewController {
     var themes = [ThemeModel]()
     var bindtoNav: UITabBarController?
     
+    
     var showView = false {
         didSet {
             showView ? showMenu() : dismissMenu()
@@ -26,7 +27,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.rgba(r: 34, g: 42, b: 48, a: 1)
         view.addSubview(menuHeadView)
@@ -45,6 +46,7 @@ class MenuViewController: UIViewController {
         }
     }
 
+    
     //MARK:- lazy load
     lazy var menuHeadView: MenuHeadView = {
         let head = MenuHeadView.init(frame: CGRect.init(x: 0, y: 0, width: screenW*0.7, height: 130))
@@ -120,13 +122,17 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MenuViewController {
-
+    
+    
+    
+    
     fileprivate func showThemeVC(_ model: ThemeModel) {
         if model.id == nil {
             bindtoNav?.selectedIndex = 0
         } else {
             bindtoNav?.selectedIndex = 1
             
+            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "setTheme"), object: nil, userInfo: ["model": model])
         }
     }
 

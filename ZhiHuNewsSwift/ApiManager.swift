@@ -15,6 +15,7 @@ enum APIManager {
     case getStartImage// 启动界面图像获取
     case getVersion(String)//软件版本查询
     case getThemes//主题日报列表查看
+    case getThemeDetail(Int)//获取主题详情
     case getNewsDetail(Int)//获取新闻详情
 }
 
@@ -43,6 +44,9 @@ extension APIManager: TargetType {
         case .getThemes:
             return "4/themes"
         
+        case .getThemeDetail(let id):
+            return "4/theme/\(id)"
+            
         case .getNewsDetail(let id):
             return "4/news/\(id)"
             

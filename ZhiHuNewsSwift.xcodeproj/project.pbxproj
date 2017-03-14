@@ -48,6 +48,12 @@
 		EE63DF171E76797500AD5CF2 /* MenuBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63DF161E76797500AD5CF2 /* MenuBottomView.swift */; };
 		EE63DF191E767B0100AD5CF2 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = EE63DF181E767B0100AD5CF2 /* download.png */; };
 		EE63DF1B1E767B0D00AD5CF2 /* moon.png in Resources */ = {isa = PBXBuildFile; fileRef = EE63DF1A1E767B0D00AD5CF2 /* moon.png */; };
+		EE7358591E77A2790015CDE6 /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7358581E77A2790015CDE6 /* ThemeViewModel.swift */; };
+		EE73585B1E77B9E50015CDE6 /* ThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE73585A1E77B9E50015CDE6 /* ThemeCell.swift */; };
+		EE73585D1E77BA7B0015CDE6 /* ThemeWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE73585C1E77BA7B0015CDE6 /* ThemeWithImageCell.swift */; };
+		EE73585F1E77C03C0015CDE6 /* EditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE73585E1E77C03C0015CDE6 /* EditorCell.swift */; };
+		EE7358611E77CC1A0015CDE6 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7358601E77CC1A0015CDE6 /* next.png */; };
+		EE7358631E77CDA40015CDE6 /* nav_back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7358621E77CDA40015CDE6 /* nav_back.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +128,12 @@
 		EE63DF161E76797500AD5CF2 /* MenuBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBottomView.swift; sourceTree = "<group>"; };
 		EE63DF181E767B0100AD5CF2 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		EE63DF1A1E767B0D00AD5CF2 /* moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moon.png; sourceTree = "<group>"; };
+		EE7358581E77A2790015CDE6 /* ThemeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewModel.swift; sourceTree = "<group>"; };
+		EE73585A1E77B9E50015CDE6 /* ThemeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeCell.swift; sourceTree = "<group>"; };
+		EE73585C1E77BA7B0015CDE6 /* ThemeWithImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeWithImageCell.swift; sourceTree = "<group>"; };
+		EE73585E1E77C03C0015CDE6 /* EditorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorCell.swift; sourceTree = "<group>"; };
+		EE7358601E77CC1A0015CDE6 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		EE7358621E77CDA40015CDE6 /* nav_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +267,9 @@
 				EE565DB41E7297E50043E896 /* DetailWebView.swift */,
 				EE63DF0A1E764D7800AD5CF2 /* MenuHeadView.swift */,
 				EE63DF161E76797500AD5CF2 /* MenuBottomView.swift */,
+				EE73585A1E77B9E50015CDE6 /* ThemeCell.swift */,
+				EE73585C1E77BA7B0015CDE6 /* ThemeWithImageCell.swift */,
+				EE73585E1E77C03C0015CDE6 /* EditorCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -282,6 +297,8 @@
 		EE565D9E1E7272430043E896 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EE7358621E77CDA40015CDE6 /* nav_back.png */,
+				EE7358601E77CC1A0015CDE6 /* next.png */,
 				EE63DF0C1E764F7400AD5CF2 /* Menu_Avatar@2x.png */,
 				EE63DF181E767B0100AD5CF2 /* download.png */,
 				EE63DF1A1E767B0D00AD5CF2 /* moon.png */,
@@ -304,6 +321,7 @@
 				EE518CAA1E713A0400CA7EA6 /* HomeViewModel.swift */,
 				EE565DB21E728F080043E896 /* DetailViewModel.swift */,
 				EE63DF141E766DB400AD5CF2 /* MenuViewModel.swift */,
+				EE7358581E77A2790015CDE6 /* ThemeViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -432,11 +450,13 @@
 				EE565DAF1E72893F0043E896 /* comment.png in Resources */,
 				EE63DF191E767B0100AD5CF2 /* download.png in Resources */,
 				EE63DF0F1E76691D00AD5CF2 /* setting.png in Resources */,
+				EE7358631E77CDA40015CDE6 /* nav_back.png in Resources */,
 				EE518C6C1E70E56700CA7EA6 /* Assets.xcassets in Resources */,
 				EE518C6A1E70E56700CA7EA6 /* Main.storyboard in Resources */,
 				EE565DA91E72889D0043E896 /* down.png in Resources */,
 				EE63DF111E76692C00AD5CF2 /* msg.png in Resources */,
 				EE63DF1B1E767B0D00AD5CF2 /* moon.png in Resources */,
+				EE7358611E77CC1A0015CDE6 /* next.png in Resources */,
 				EE63DF131E76693A00AD5CF2 /* collect.png in Resources */,
 				EE63DF0D1E764F7400AD5CF2 /* Menu_Avatar@2x.png in Resources */,
 				EE565DAD1E7289120043E896 /* share.png in Resources */,
@@ -605,11 +625,14 @@
 				EE518C9C1E70F00300CA7EA6 /* BannerView.swift in Sources */,
 				EE518CA41E70FF8B00CA7EA6 /* ApiManager.swift in Sources */,
 				EE518CA01E70F48100CA7EA6 /* StoryModel.swift in Sources */,
+				EE73585B1E77B9E50015CDE6 /* ThemeCell.swift in Sources */,
 				EE63DF151E766DB400AD5CF2 /* MenuViewModel.swift in Sources */,
 				EE518C991E70ED3400CA7EA6 /* ThemeViewController.swift in Sources */,
 				EE518CA71E711F0D00CA7EA6 /* ToModelExtension.swift in Sources */,
 				EE518C971E70ED2100CA7EA6 /* HomeViewController.swift in Sources */,
 				EE565DA51E72856E0043E896 /* DetailBottomView.swift in Sources */,
+				EE7358591E77A2790015CDE6 /* ThemeViewModel.swift in Sources */,
+				EE73585F1E77C03C0015CDE6 /* EditorCell.swift in Sources */,
 				EE565DB51E7297E50043E896 /* DetailWebView.swift in Sources */,
 				EE518CAB1E713A0400CA7EA6 /* HomeViewModel.swift in Sources */,
 				EE565DA01E7275FC0043E896 /* MenuViewController.swift in Sources */,
@@ -621,6 +644,7 @@
 				EE518C951E70ED0200CA7EA6 /* MainViewController.swift in Sources */,
 				EE565DA31E72842B0043E896 /* DetailViewController.swift in Sources */,
 				EE565DB31E728F080043E896 /* DetailViewModel.swift in Sources */,
+				EE73585D1E77BA7B0015CDE6 /* ThemeWithImageCell.swift in Sources */,
 				EE63DF0B1E764D7800AD5CF2 /* MenuHeadView.swift in Sources */,
 				EE63DF171E76797500AD5CF2 /* MenuBottomView.swift in Sources */,
 			);
