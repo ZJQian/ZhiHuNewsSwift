@@ -25,9 +25,8 @@ pod 'Moya/RxSwift'
 pod 'ObjectMapper'
 pod 'RxCocoa'
 pod 'SnapKit'
-pod 'SDWebImage', '~> 3.8.2'
-pod 'SDCycleScrollView'
-pod 'RxDataSources'
 pod 'Then'
+pod 'Kingfisher'
+
 
 end

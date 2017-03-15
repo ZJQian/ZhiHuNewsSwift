@@ -18,7 +18,7 @@ class ThemeWithImageCell: UITableViewCell {
         didSet {
         
             titleLabel.text = model.title
-            titleImgView.sd_setImage(with: URL.init(string: (model.images?.first)!))
+            titleImgView.kf.setImage(with: URL.init(string: (model.images?.first)!))
         
         }
     

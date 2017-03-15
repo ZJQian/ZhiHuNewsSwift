@@ -53,9 +53,11 @@
 		EE73585D1E77BA7B0015CDE6 /* ThemeWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE73585C1E77BA7B0015CDE6 /* ThemeWithImageCell.swift */; };
 		EE73585F1E77C03C0015CDE6 /* AllEditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE73585E1E77C03C0015CDE6 /* AllEditorCell.swift */; };
 		EE7358611E77CC1A0015CDE6 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7358601E77CC1A0015CDE6 /* next.png */; };
-		EE7358631E77CDA40015CDE6 /* nav_back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7358621E77CDA40015CDE6 /* nav_back.png */; };
 		EE7358651E77D28A0015CDE6 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7358641E77D28A0015CDE6 /* EditorViewController.swift */; };
 		EE7358671E77D7470015CDE6 /* EditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7358661E77D7470015CDE6 /* EditorCell.swift */; };
+		EE7358691E77E6A60015CDE6 /* nav_back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7358681E77E6A60015CDE6 /* nav_back.png */; };
+		EEC17DB91E78F0C200E5AF7E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC17DB81E78F0C200E5AF7E /* BaseViewController.swift */; };
+		EEC17DBB1E78F1B300E5AF7E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC17DBA1E78F1B300E5AF7E /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,9 +137,11 @@
 		EE73585C1E77BA7B0015CDE6 /* ThemeWithImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeWithImageCell.swift; sourceTree = "<group>"; };
 		EE73585E1E77C03C0015CDE6 /* AllEditorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllEditorCell.swift; sourceTree = "<group>"; };
 		EE7358601E77CC1A0015CDE6 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
-		EE7358621E77CDA40015CDE6 /* nav_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_back.png; sourceTree = "<group>"; };
 		EE7358641E77D28A0015CDE6 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		EE7358661E77D7470015CDE6 /* EditorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorCell.swift; sourceTree = "<group>"; };
+		EE7358681E77E6A60015CDE6 /* nav_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_back.png; sourceTree = "<group>"; };
+		EEC17DB81E78F0C200E5AF7E /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		EEC17DBA1E78F1B300E5AF7E /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +263,8 @@
 				EE565D9F1E7275FC0043E896 /* MenuViewController.swift */,
 				EE565DA21E72842B0043E896 /* DetailViewController.swift */,
 				EE7358641E77D28A0015CDE6 /* EditorViewController.swift */,
+				EEC17DB81E78F0C200E5AF7E /* BaseViewController.swift */,
+				EEC17DBA1E78F1B300E5AF7E /* SettingViewController.swift */,
 			);
 			name = ViewCotrollers;
 			sourceTree = "<group>";
@@ -303,7 +309,7 @@
 		EE565D9E1E7272430043E896 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EE7358621E77CDA40015CDE6 /* nav_back.png */,
+				EE7358681E77E6A60015CDE6 /* nav_back.png */,
 				EE7358601E77CC1A0015CDE6 /* next.png */,
 				EE63DF0C1E764F7400AD5CF2 /* Menu_Avatar@2x.png */,
 				EE63DF181E767B0100AD5CF2 /* download.png */,
@@ -456,7 +462,7 @@
 				EE565DAF1E72893F0043E896 /* comment.png in Resources */,
 				EE63DF191E767B0100AD5CF2 /* download.png in Resources */,
 				EE63DF0F1E76691D00AD5CF2 /* setting.png in Resources */,
-				EE7358631E77CDA40015CDE6 /* nav_back.png in Resources */,
+				EE7358691E77E6A60015CDE6 /* nav_back.png in Resources */,
 				EE518C6C1E70E56700CA7EA6 /* Assets.xcassets in Resources */,
 				EE518C6A1E70E56700CA7EA6 /* Main.storyboard in Resources */,
 				EE565DA91E72889D0043E896 /* down.png in Resources */,
@@ -628,11 +634,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC17DBB1E78F1B300E5AF7E /* SettingViewController.swift in Sources */,
 				EE518C9C1E70F00300CA7EA6 /* BannerView.swift in Sources */,
 				EE518CA41E70FF8B00CA7EA6 /* ApiManager.swift in Sources */,
 				EE518CA01E70F48100CA7EA6 /* StoryModel.swift in Sources */,
 				EE7358671E77D7470015CDE6 /* EditorCell.swift in Sources */,
 				EE73585B1E77B9E50015CDE6 /* ThemeCell.swift in Sources */,
+				EEC17DB91E78F0C200E5AF7E /* BaseViewController.swift in Sources */,
 				EE63DF151E766DB400AD5CF2 /* MenuViewModel.swift in Sources */,
 				EE518C991E70ED3400CA7EA6 /* ThemeViewController.swift in Sources */,
 				EE518CA71E711F0D00CA7EA6 /* ToModelExtension.swift in Sources */,

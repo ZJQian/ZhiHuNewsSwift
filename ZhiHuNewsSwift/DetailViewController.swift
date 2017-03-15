@@ -9,8 +9,7 @@
 import UIKit
 import RxSwift
 import Moya
-import SDWebImage
-
+import Kingfisher
 class DetailViewController: UIViewController {
 
     var previousWeb = DetailWebView()
@@ -76,7 +75,7 @@ class DetailViewController: UIViewController {
             
                 if let image = model.image {
                 
-                    self.detailWebView.img.sd_setImage(with: URL.init(string: image))
+                    self.detailWebView.img.kf.setImage(with: URL.init(string: image))
                     self.detailWebView.titleLab.text = model.title
                 }else {
                     
@@ -189,12 +188,8 @@ extension DetailViewController: UIScrollViewDelegate {
             UIApplication.shared.statusBarStyle = .lightContent
             statusView.isHidden = true
         }
-        let offset = scrollView.contentOffset.y
-        if offset < 0 {
-            let totalOffset = 200 + abs(offset)
-            let f = totalOffset / 200
-            detailWebView.img.frame = CGRect.init(x: -(screenW * f - screenW)/2, y: offset, width: screenW*f, height: totalOffset)
-        }
+        detailWebView.img.frame.size.height = max(200 - (scrollView.contentOffset.y), 200)
+        detailWebView.img.frame.origin.y = min(scrollView.contentOffset.y, 0)
 
     }
     

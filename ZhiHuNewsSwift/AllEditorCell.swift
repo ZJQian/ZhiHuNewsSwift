@@ -111,7 +111,7 @@ extension AllEditorCell: UICollectionViewDelegate, UICollectionViewDataSource {
         img.frame = CGRect.init(x: 0, y: 0, width: 20, height: 20)
         img.layer.cornerRadius = 10
         img.layer.masksToBounds = true
-        img.sd_setImage(with: URL.init(string: model.avatar!))
+        img.kf.setImage(with: URL.init(string: model.avatar!))
         cell.contentView.addSubview(img)
         
         return cell

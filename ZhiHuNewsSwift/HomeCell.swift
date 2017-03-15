@@ -8,7 +8,8 @@
 
 import UIKit
 import SnapKit
-import SDWebImage
+import Kingfisher
+
 class HomeCell: UITableViewCell {
 
     var titleLabel = UILabel()
@@ -43,7 +44,7 @@ class HomeCell: UITableViewCell {
     func model(model: StoryModel) {
         
         titleLabel.text = model.title
-        cellImageView.sd_setImage(with: URL.init(string: (model.images?.count)! > 0 ? (model.images?.first)! : ""))
+        cellImageView.kf.setImage(with: URL.init(string: (model.images?.count)! > 0 ? (model.images?.first)! : ""))
     }
     
     

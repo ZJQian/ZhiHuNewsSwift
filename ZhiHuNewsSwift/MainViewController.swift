@@ -31,7 +31,14 @@ class MainViewController: UITabBarController {
         let nav2 = UINavigationController.init(rootViewController: theme)
         nav2.navigationBar.isHidden = true
         
-        viewControllers = [nav,nav2]
+        
+        let setting = SettingViewController.init()
+        let nav3 = UINavigationController.init(rootViewController: setting)
+        nav3.navigationBar.isHidden = true
+
+        
+        
+        viewControllers = [nav,nav2,nav3]
         
         
         tabBar.isHidden = true

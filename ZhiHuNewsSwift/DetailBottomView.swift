@@ -18,10 +18,14 @@ class DetailBottomView: UIView {
         
         backgroundColor = UIColor.white
         
+        let line = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: 0.5))
+        line.backgroundColor = UIColor.lightGray
+        addSubview(line)
+        
+        
         for index in 0...4 {
             let btn = UIButton.init(type: .custom)
-            btn.backgroundColor = UIColor.orange
-            btn.frame = CGRect.init(x: CGFloat(index) * screenW/5, y: 0, width: screenW/5, height: frame.size.height)
+            btn.frame = CGRect.init(x: CGFloat(index) * screenW/5, y: 0.5, width: screenW/5, height: frame.size.height-0.5)
             btn.setImage(UIImage.init(named: ["back","down","zan","share","comment"][index]), for: .normal)
             addSubview(btn)
             btn.rx

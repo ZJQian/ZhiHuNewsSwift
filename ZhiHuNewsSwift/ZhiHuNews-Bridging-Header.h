@@ -10,7 +10,6 @@
 #define ZhiHuNews_Bridging_Header_h
 
 
-#import "SDCycleScrollView/SDCycleScrollView.h"
 
 
 #endif /* ZhiHuNews_Bridging_Header_h */

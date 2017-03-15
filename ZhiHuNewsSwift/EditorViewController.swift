@@ -77,6 +77,8 @@ class EditorViewController: UIViewController {
     }
     
 }
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension EditorViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

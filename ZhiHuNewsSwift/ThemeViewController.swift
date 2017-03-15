@@ -11,7 +11,6 @@ import RxSwift
 
 class ThemeViewController: UIViewController {
 
-    var navView = UIImageView()
     var titleLabel = UILabel()
     var dispose = DisposeBag()
     var menuVC = MenuViewController()
@@ -28,9 +27,10 @@ class ThemeViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         stutasUI()
-        setNavBarUI()
         view.addSubview(tableView)
-        
+        //tableView.tableHeaderView = headView
+        setNavBarUI()
+
         
         //通知
         NotificationCenter.default
@@ -40,7 +40,7 @@ class ThemeViewController: UIViewController {
             
                 let model = noti.userInfo?["model"] as! ThemeModel
                 print(model.thumbnail!)
-                self.navView.sd_setImage(with: URL.init(string: model.thumbnail!))
+                self.headView.img.kf.setImage(with: URL.init(string: model.thumbnail!))
                 self.titleLabel.text = model.name
                 self.menuVC.showView = false//这里设置的原因是,每次点击完之后,让侧边栏隐藏,然后点击返回的时候取反
                 self.loadData(id: model.id!)
@@ -59,6 +59,8 @@ class ThemeViewController: UIViewController {
                 self.menuVC.showView = !self.menuVC.showView
                 }
         }).addDisposableTo(dispose)
+        
+       
         
     }
 
@@ -83,9 +85,6 @@ class ThemeViewController: UIViewController {
     }
     private func setNavBarUI () {
         
-        navView = UIImageView.init(frame: CGRect.init(x: 0, y: -200, width: screenW, height: 260))
-        view.addSubview(navView)
-        
         titleLabel = UILabel.init(frame: CGRect.init(x: 0, y: 20, width: screenW, height: 40))
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
@@ -109,14 +108,18 @@ class ThemeViewController: UIViewController {
 
     //MARK:- lazy load
     lazy var tableView: UITableView = {
-        let table = UITableView.init(frame: CGRect.init(x: 0, y: 60, width: screenW, height: screenH-60), style: .plain)
+        let table = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: screenH), style: .plain)
         table.delegate = self
         table.dataSource = self
         table.separatorStyle = .none
+        table.backgroundColor = UIColor.clear
         return table
     }()
-    
 
+    lazy var headView: HeadView = {
+        let head = HeadView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: 60))
+        return head
+    }()
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -126,6 +129,10 @@ class ThemeViewController: UIViewController {
 // MARK: - UITableViewDelegate,UITableViewDataSource
 extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
 
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return themeStories.count + 1
     }
@@ -169,6 +176,17 @@ extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.row == 0 ? 35 : 90
     }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: 60))
+        
+        view.addSubview(headView)
+        
+        return view
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
@@ -190,6 +208,21 @@ extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension ThemeViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        
+        if offsetY < 0 {
+            
+            headView.offY.value = Double(offsetY)
+
+        }
+
+    }
+}
 
 // MARK: - UIGestureRecognizerDelegate
 extension ThemeViewController: UIGestureRecognizerDelegate {
@@ -206,3 +239,34 @@ extension ThemeViewController: UIGestureRecognizerDelegate {
         return false
     }
 }
+
+
+// MARK: - 自定义view
+class HeadView: UIView {
+    
+    var offY = Variable(0.0)
+    var dispose = DisposeBag()
+    var img = UIImageView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        img = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: 60))
+        img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
+        addSubview(img)
+        
+        offY.asObservable().subscribe(onNext: { (offsetY) in
+            
+            self.img.frame.origin.y = CGFloat.init(offsetY)
+            self.img.frame.size.height = 60 - CGFloat.init(offsetY)
+            
+        }).addDisposableTo(dispose)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+

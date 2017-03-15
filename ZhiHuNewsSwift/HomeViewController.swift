@@ -11,7 +11,6 @@ import UIKit
 import Moya
 import RxSwift
 import RxCocoa
-import RxDataSources
 
 class HomeViewController: UIViewController {
 
@@ -32,13 +31,13 @@ class HomeViewController: UIViewController {
         stutasUI()
         view.addSubview(tableView)
         tableView.tableHeaderView = bannerView
-        bannerView.isUserInteractionEnabled = true
         setNavBarUI()
         loadData()
         
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapClick(_:)))
         tap.delegate = self
         view.addGestureRecognizer(tap)
+        
     }
 
     func tapClick(_ sender: UITapGestureRecognizer) {
@@ -52,10 +51,10 @@ class HomeViewController: UIViewController {
     func loadData() {
     
         homeViewModel.getNewsList().subscribe(onNext: { (model) in
-            
-            self.bannerView.images(array: model.top_stories!)
             self.dataArray = model.stories!
             self.tableView.reloadData()
+            self.bannerView.topStories = model.top_stories!
+            
         }, onError: { (error) in
             
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(dispose)
@@ -86,8 +85,7 @@ class HomeViewController: UIViewController {
         btn.frame = CGRect.init(x: 10, y: 31.5, width: 22.5, height: 17)
         btn.setImage(UIImage.init(named: "menu"), for: .normal)
         view.addSubview(btn)
-        btn
-            .rx
+        btn.rx
             .tap
             .subscribe(onNext: { (sender) in
             
@@ -96,7 +94,7 @@ class HomeViewController: UIViewController {
                 self.menuViewController.view.frame = CGRect.init(x: -screenW*0.7, y: 0, width: screenW*0.7, height: screenH)
                 self.menuViewController.showView = !self.menuViewController.showView
                 
-        }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(dispose)
+        }).addDisposableTo(dispose)
     }
     
     //MARK:- lazy load
@@ -157,6 +155,8 @@ extension HomeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         navView.backgroundColor = UIColor.rgba(r: 48, g: 142, b: 205, a: 1)
         navView.alpha = scrollView.contentOffset.y / 200
+        
+        bannerView.offY.value = Double(scrollView.contentOffset.y)
     }
 }
 

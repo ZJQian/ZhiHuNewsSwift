@@ -18,7 +18,7 @@ class EditorCell: UITableViewCell {
     
         didSet {
         
-            headImgView.sd_setImage(with: URL.init(string: model.avatar!))
+            headImgView.kf.setImage(with: URL.init(string: model.avatar!))
             
             nameLabel.text = model.name
             

@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import RxSwift
+
+protocol MenuHeadViewDelegate: class {
+    func clicked(index: Int)
+}
 
 class MenuHeadView: UIView {
 
+    
+    weak var delegate: MenuHeadViewDelegate?
+    var dispose = DisposeBag()
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -45,6 +56,11 @@ class MenuHeadView: UIView {
                 make.width.equalTo(screenW*0.7/3)
                 make.height.equalTo(40)
             })
+            customBtn.rx.tap.subscribe({ (sender) in
+                
+                self.delegate?.clicked(index: index)
+                
+            }).addDisposableTo(dispose)
         }
     }
     

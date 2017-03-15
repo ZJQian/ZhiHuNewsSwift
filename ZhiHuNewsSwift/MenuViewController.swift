@@ -50,6 +50,7 @@ class MenuViewController: UIViewController {
     //MARK:- lazy load
     lazy var menuHeadView: MenuHeadView = {
         let head = MenuHeadView.init(frame: CGRect.init(x: 0, y: 0, width: screenW*0.7, height: 130))
+        head.delegate = self
         return head
     }()
     lazy var menuBottomView: MenuBottomView = {
@@ -104,7 +105,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         let menuCellID = "menuCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: menuCellID)
         if cell == nil {
-            cell = HomeCell.init(style: .default, reuseIdentifier: menuCellID)
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: menuCellID)
         }
         cell?.backgroundColor = UIColor.rgba(r: 34, g: 42, b: 48, a: 1)
         cell?.textLabel?.font = UIFont.systemFont(ofSize: 13)
@@ -134,3 +135,25 @@ extension MenuViewController {
     }
 
 }
+
+// MARK: - MenuHeadViewDelegate
+extension MenuViewController: MenuHeadViewDelegate {
+
+    func clicked(index: Int) {
+        
+        switch index {
+        case 0: break
+            
+        case 1: break
+            
+        case 2:
+        
+            self.showView = false
+            bindtoNav?.selectedIndex = 2
+            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "setting"), object: nil)
+        default: break
+            
+        }
+    }
+}
+
