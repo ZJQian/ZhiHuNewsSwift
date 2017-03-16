@@ -220,18 +220,13 @@
 		EE518C631E70E56700CA7EA6 /* ZhiHuNewsSwift */ = {
 			isa = PBXGroup;
 			children = (
-				EE518C641E70E56700CA7EA6 /* AppDelegate.swift */,
-				EE518C661E70E56700CA7EA6 /* ViewController.swift */,
+				EEC17DBC1E7944A900E5AF7E /* SupportFiles */,
 				EE565DA11E72770A0043E896 /* ViewModel */,
 				EE565D9E1E7272430043E896 /* Images */,
 				EE518CA51E711EEB00CA7EA6 /* Tool */,
 				EE518CA11E70F72900CA7EA6 /* View */,
 				EE518CA21E70F73100CA7EA6 /* Model */,
 				EE518C9A1E70EFE000CA7EA6 /* ViewCotrollers */,
-				EE518C681E70E56700CA7EA6 /* Main.storyboard */,
-				EE518C6B1E70E56700CA7EA6 /* Assets.xcassets */,
-				EE518C6D1E70E56700CA7EA6 /* LaunchScreen.storyboard */,
-				EE518C701E70E56700CA7EA6 /* Info.plist */,
 			);
 			path = ZhiHuNewsSwift;
 			sourceTree = "<group>";
@@ -336,6 +331,19 @@
 				EE7358581E77A2790015CDE6 /* ThemeViewModel.swift */,
 			);
 			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		EEC17DBC1E7944A900E5AF7E /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				EE518C641E70E56700CA7EA6 /* AppDelegate.swift */,
+				EE518C661E70E56700CA7EA6 /* ViewController.swift */,
+				EE518C681E70E56700CA7EA6 /* Main.storyboard */,
+				EE518C6B1E70E56700CA7EA6 /* Assets.xcassets */,
+				EE518C6D1E70E56700CA7EA6 /* LaunchScreen.storyboard */,
+				EE518C701E70E56700CA7EA6 /* Info.plist */,
+			);
+			name = SupportFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

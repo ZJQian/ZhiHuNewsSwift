@@ -12,12 +12,14 @@ import Moya
 import ObjectMapper
 import HandyJSON
 
-class MenuViewModel {
+class MenuViewModel: NSObject {
     
     private let provider = RxMoyaProvider<APIManager>()
     var dispose = DisposeBag()
     
-    func getThemes(completed: @escaping (_ menuModel: MenuModel) -> ()){
+    
+    func getThemes(completed: @escaping (_ model: MenuModel) -> ()){
+        
         
          provider
             .request(.getThemes)
@@ -32,6 +34,10 @@ class MenuViewModel {
     }
 
 }
+
+
+
+
 
 
 struct MenuModel: HandyJSON {

@@ -11,8 +11,12 @@ import HandyJSON
 import RxSwift
 import Moya
 
-class ThemeViewModel {
 
+
+
+class ThemeViewModel: NSObject {
+
+    
     private let provider = RxMoyaProvider<APIManager>()
     let dispose = DisposeBag()
     
@@ -22,20 +26,19 @@ class ThemeViewModel {
     /// - Parameters:
     ///   - id: id
     ///   - completed: 完成callback
-    func getThemeDetail(id: Int, callback completed: @escaping (_ model: ThemeDetailModel) -> ()) {
+    func getThemeDetail(id: Int,completed: @escaping (_ model: ThemeDetailModel) -> ()) {
     
         provider.request(.getThemeDetail(id)).mapModel(ThemeDetailModel.self).subscribe(onNext: { (model) in
             
-            completed(model)
-            
+          completed(model)
         }, onError: { (error) in
             
         }).addDisposableTo(dispose)
-        
-    
     }
-
 }
+
+
+
 
 struct ThemeDetailModel: HandyJSON {
     var stories: [ThemeStoryModel]?

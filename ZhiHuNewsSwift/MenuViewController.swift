@@ -14,8 +14,8 @@ class MenuViewController: UIViewController {
 
     var menuViewModel = MenuViewModel()
     var dispose = DisposeBag()
-    var themes = [ThemeModel]()
     var bindtoNav: UITabBarController?
+    var themes = [ThemeModel]()
     
     
     var showView = false {
@@ -24,19 +24,23 @@ class MenuViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.rgba(r: 34, g: 42, b: 48, a: 1)
+        
+        
         view.addSubview(menuHeadView)
         view.addSubview(tableView)
         view.addSubview(menuBottomView)
+        
         loadData()
+       
     }
     
     func loadData() {
+        
         menuViewModel.getThemes { (model) in
             self.themes = model.others!
             var m = ThemeModel()
@@ -45,7 +49,7 @@ class MenuViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-
+    
     
     //MARK:- lazy load
     lazy var menuHeadView: MenuHeadView = {
@@ -59,10 +63,10 @@ class MenuViewController: UIViewController {
     }()
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: CGRect.init(x: 0, y: self.menuHeadView.bottom, width: screenW*0.7, height: screenH-self.menuHeadView.bottom-60), style: .plain)
-        table.delegate = self
-        table.dataSource = self
         table.separatorStyle = .none
         table.backgroundColor = UIColor.clear
+        table.delegate = self
+        table.dataSource = self
         return table
     }()
     override func didReceiveMemoryWarning() {
@@ -70,33 +74,8 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
-
-extension MenuViewController {
-
-
-    func showMenu() {
-        let view = UIApplication.shared.keyWindow?.subviews.first
-        let menuView = UIApplication.shared.keyWindow?.subviews.last
-        UIApplication.shared.keyWindow?.bringSubview(toFront: (UIApplication.shared.keyWindow?.subviews[1])!)
-        UIView.animate(withDuration: 0.5, animations: {
-            view?.transform = CGAffineTransform.init(translationX: screenW*0.7, y: 0)
-            menuView?.transform = (view?.transform)!
-        })
-    }
-    
-    func dismissMenu() {
-        let view = UIApplication.shared.keyWindow?.subviews.first
-        let menuView = UIApplication.shared.keyWindow?.subviews.last
-        UIApplication.shared.keyWindow?.bringSubview(toFront: (UIApplication.shared.keyWindow?.subviews[1])!)
-        UIView.animate(withDuration: 0.5, animations: {
-            view?.transform = CGAffineTransform.init(translationX: 0, y: 0)
-            menuView?.transform = (view?.transform)!
-        })
-    }
-
-}
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return themes.count
     }
@@ -123,7 +102,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MenuViewController {
-       
+    
     fileprivate func showThemeVC(_ model: ThemeModel) {
         if model.id == nil {
             bindtoNav?.selectedIndex = 0
@@ -133,12 +112,12 @@ extension MenuViewController {
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "setTheme"), object: nil, userInfo: ["model": model])
         }
     }
-
+    
 }
 
 // MARK: - MenuHeadViewDelegate
 extension MenuViewController: MenuHeadViewDelegate {
-
+    
     func clicked(index: Int) {
         
         switch index {
@@ -147,8 +126,8 @@ extension MenuViewController: MenuHeadViewDelegate {
         case 1: break
             
         case 2:
-        
-            self.showView = false
+            
+            showView = false
             bindtoNav?.selectedIndex = 2
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "setting"), object: nil)
         default: break
@@ -156,4 +135,31 @@ extension MenuViewController: MenuHeadViewDelegate {
         }
     }
 }
+
+
+extension MenuViewController {
+    
+    
+    func showMenu() {
+        let view = UIApplication.shared.keyWindow?.subviews.first
+        let menuView = UIApplication.shared.keyWindow?.subviews.last
+        UIApplication.shared.keyWindow?.bringSubview(toFront: (UIApplication.shared.keyWindow?.subviews[1])!)
+        UIView.animate(withDuration: 0.5, animations: {
+            view?.transform = CGAffineTransform.init(translationX: screenW*0.7, y: 0)
+            menuView?.transform = (view?.transform)!
+        })
+    }
+    
+    func dismissMenu() {
+        let view = UIApplication.shared.keyWindow?.subviews.first
+        let menuView = UIApplication.shared.keyWindow?.subviews.last
+        UIApplication.shared.keyWindow?.bringSubview(toFront: (UIApplication.shared.keyWindow?.subviews[1])!)
+        UIView.animate(withDuration: 0.5, animations: {
+            view?.transform = CGAffineTransform.init(translationX: 0, y: 0)
+            menuView?.transform = (view?.transform)!
+        })
+    }
+    
+}
+
 

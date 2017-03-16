@@ -10,7 +10,7 @@ import UIKit
 import Moya
 import RxSwift
 
-class EditorViewController: UIViewController {
+class EditorViewController: BaseViewController {
 
     var navView = UIView()
     var dispose = DisposeBag()
@@ -21,45 +21,14 @@ class EditorViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        stutasUI()
-        setNavBarUI()
+        
+        titleLabel.text = "主编"
+        
         view.addSubview(tableView)
         
     }
 
-    // MARK:- set UI
-    private func stutasUI() {
-        
-        let sta = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: 1))
-        view.addSubview(sta)
-        
-    }
-    private func setNavBarUI () {
-        
-        navView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: 60))
-        navView.backgroundColor = UIColor.rgba(r: 73, g: 165, b: 246, a: 1)
-        view.addSubview(navView)
-        
-        let titleLabel = UILabel.init(frame: CGRect.init(x: 0, y: 20, width: screenW, height: 40))
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.text = "主编"
-        titleLabel.font = UIFont.systemFont(ofSize: 16)
-        view.addSubview(titleLabel)
-        
-        
-        let btn = UIButton.init(type: .custom)
-        btn.frame = CGRect.init(x: 0, y: 25, width: 50, height: 30)
-        btn.setImage(UIImage.init(named: "nav_back"), for: .normal)
-        view.addSubview(btn)
-        btn.rx
-            .tap
-            .subscribe(onNext: { (sender) in
-                
-                self.navigationController!.popViewController(animated: true)
-            }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(dispose)
-    }
-
+   
     //MARK:- lazy load
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: CGRect.init(x: 0, y: 60, width: screenW, height: screenH-60), style: .plain)

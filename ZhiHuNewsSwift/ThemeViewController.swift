@@ -14,12 +14,10 @@ class ThemeViewController: UIViewController {
     var titleLabel = UILabel()
     var dispose = DisposeBag()
     var menuVC = MenuViewController()
-    let themeViewModel = ThemeViewModel()
     var themeStories = [ThemeStoryModel]()
     var themeEditors = [EditorModel]()
-    
-    
-    
+    var themeViewModel = ThemeViewModel()
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +26,7 @@ class ThemeViewController: UIViewController {
         
         stutasUI()
         view.addSubview(tableView)
-        //tableView.tableHeaderView = headView
         setNavBarUI()
-
         
         //通知
         NotificationCenter.default
@@ -44,6 +40,7 @@ class ThemeViewController: UIViewController {
                 self.titleLabel.text = model.name
                 self.menuVC.showView = false//这里设置的原因是,每次点击完之后,让侧边栏隐藏,然后点击返回的时候取反
                 self.loadData(id: model.id!)
+                
         }).addDisposableTo(dispose)
         
         
@@ -64,18 +61,15 @@ class ThemeViewController: UIViewController {
         
     }
 
-    //MARK:- request
     func loadData(id: Int) {
         
         themeViewModel.getThemeDetail(id: id) { (model) in
-            
             self.themeStories = model.stories!
             self.themeEditors = model.editors!
-            
             self.tableView.reloadData()
         }
+        
     }
-    
     // MARK:- set UI
     private func stutasUI() {
         
@@ -108,11 +102,11 @@ class ThemeViewController: UIViewController {
 
     //MARK:- lazy load
     lazy var tableView: UITableView = {
-        let table = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: screenW, height: screenH), style: .plain)
-        table.delegate = self
-        table.dataSource = self
+        let table = UITableView.init(frame: self.view.frame, style: .plain)
         table.separatorStyle = .none
         table.backgroundColor = UIColor.clear
+        table.delegate = self
+        table.dataSource = self
         return table
     }()
 
@@ -126,9 +120,26 @@ class ThemeViewController: UIViewController {
     }
 }
 
+
+// MARK: - UIGestureRecognizerDelegate
+extension ThemeViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        if menuVC.showView == true {
+            
+            if (touch.view?.isKind(of: UITableView.self))! {
+                return false
+            }
+            return true
+        }
+        return false
+    }
+}
+
 // MARK: - UITableViewDelegate,UITableViewDataSource
 extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
-
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -153,7 +164,7 @@ extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
             let model = themeStories[indexPath.row - 1] as ThemeStoryModel
             
             if model.images != nil {
-            
+                
                 let themeCellID = "themeImageCell"
                 var cell = tableView.dequeueReusableCell(withIdentifier: themeCellID) as? ThemeWithImageCell
                 if cell == nil {
@@ -162,7 +173,7 @@ extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
                 cell?.model = model
                 return cell!
             }else{
-            
+                
                 let themeCellID = "themeCell"
                 var cell = tableView.dequeueReusableCell(withIdentifier: themeCellID) as? ThemeCell
                 if cell == nil {
@@ -210,7 +221,7 @@ extension ThemeViewController: UITableViewDelegate,UITableViewDataSource {
 
 // MARK: - UIScrollViewDelegate
 extension ThemeViewController: UIScrollViewDelegate {
-
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let offsetY = scrollView.contentOffset.y
@@ -218,27 +229,13 @@ extension ThemeViewController: UIScrollViewDelegate {
         if offsetY < 0 {
             
             headView.offY.value = Double(offsetY)
-
-        }
-
-    }
-}
-
-// MARK: - UIGestureRecognizerDelegate
-extension ThemeViewController: UIGestureRecognizerDelegate {
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
-        if menuVC.showView == true {
             
-            if (touch.view?.isKind(of: UITableView.self))! {
-                return false
-            }
-            return true
         }
-        return false
+        
     }
 }
+
+
 
 
 // MARK: - 自定义view
